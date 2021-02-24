@@ -675,6 +675,13 @@ func (w *Wallet) SignData(account accounts.Account, mimeType string, data []byte
 	return w.signHash(account, crypto.Keccak256(data))
 }
 
+func (w *Wallet) SignTypedMessage(account accounts.Account, domainHash []byte, messageHash []byte) ([]byte, error) {
+	payload := []byte{25, 1}p
+	payload = append(payload, domainHash...)
+	payload = append(payload, messageHash...)
+	return w.signHash(account, crypto.Keccak256(payload))
+}
+
 func (w *Wallet) signHash(account accounts.Account, hash []byte) ([]byte, error) {
 	w.lock.Lock()
 	defer w.lock.Unlock()

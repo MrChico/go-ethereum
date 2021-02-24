@@ -148,3 +148,10 @@ func (w *keystoreWallet) SignTxWithPassphrase(account accounts.Account, passphra
 	// Account seems valid, request the keystore to sign
 	return w.keystore.SignTxWithPassphrase(account, passphrase, tx, chainID)
 }
+
+func (w *keystoreWallet) SignTypedMessage(account accounts.Account, domainHash []byte, messageHash []byte) ([]byte, error) {
+	payload := []byte{25, 1}
+	payload = append(payload, domainHash...)
+	payload = append(payload, messageHash...)
+	return w.keystore.SignHash(account, crypto.Keccak256(payload))
+}
