@@ -1,4 +1,4 @@
-module github.com/ethereum/go-ethereum
+module github.com/mrchico/go-ethereum
 
 go 1.13
 
@@ -55,3 +55,5 @@ require (
 	gopkg.in/olebedev/go-duktape.v3 v3.0.0-20200619000410-60c24ae608a6
 	gopkg.in/urfave/cli.v1 v1.20.0
 )
+
+replace github.com/ethereum/go-ethereum => github.com/mrchico/go-ethereum
